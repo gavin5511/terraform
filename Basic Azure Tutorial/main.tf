@@ -1,13 +1,18 @@
 # Configure the Azure provider
 terraform {
+  required_version = ">= 1.1.0"
   required_providers {
     azurerm = {
-      source  = "hashicorp/azurerm"
+      source = "hashicorp/azurerm"
       version = "~> 3.0.2"
     }
   }
-
-  required_version = ">= 1.1.0"
+  cloud {
+    organization = "gavin-medlin"
+    workspaces {
+      name = "learn-azure"
+    }
+  }  
 }
 
 provider "azurerm" {
@@ -15,7 +20,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg-uks" {
-  name     = "rg-terraform-basic-tutorial-uks"
+  name     = var.resource_group_name_uks
   location = "uksouth"
   tags = {
     environment = "Production"
@@ -24,11 +29,29 @@ resource "azurerm_resource_group" "rg-uks" {
 }
 
 resource "azurerm_resource_group" "rg-ukw" {
-  name     = "rg-terraform-basic-tutorial-ukw"
+  name     = var.resource_group_name_ukw
   location = "ukwest"
   tags = {
     environment = "Production"
     location = "UKW"
+  }
+}
+
+resource "azurerm_resource_group" "rg-eun" {
+  name     = var.resource_group_name_eun
+  location = "northeurope"
+  tags = {
+    environment = "Production"
+    location = "EUN"
+  }
+}
+
+resource "azurerm_resource_group" "rg-euw" {
+  name     = var.resource_group_name_euw
+  location = "westeurope"
+  tags = {
+    environment = "Production"
+    location = "EUW"
   }
 }
 
