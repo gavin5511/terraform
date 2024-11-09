@@ -75,3 +75,5 @@ resource "azurerm_virtual_network_peering" "ukw-uks" {
   virtual_network_name      = azurerm_virtual_network.vnet-ukw.name
   remote_virtual_network_id = azurerm_virtual_network.vnet-uks.id
 }
+
+# More to be added soon
