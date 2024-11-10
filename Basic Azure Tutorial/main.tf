@@ -37,24 +37,6 @@ resource "azurerm_resource_group" "rg-ukw" {
   }
 }
 
-resource "azurerm_resource_group" "rg-eun" {
-  name     = var.resource_group_name_eun
-  location = "northeurope"
-  tags = {
-    environment = "Production"
-    location = "EUN"
-  }
-}
-
-resource "azurerm_resource_group" "rg-euw" {
-  name     = var.resource_group_name_euw
-  location = "westeurope"
-  tags = {
-    environment = "Production"
-    location = "EUW"
-  }
-}
-
 # Create Azure virtual networks
 resource "azurerm_virtual_network" "vnet-uks" {
   name                = "vnet-uks"
